@@ -1,7 +1,7 @@
 /*
   The purpose of this file is to 
 
-  Author: 
+  Authors: Camille Williams, Mahmudul Hasan Hamim, Sahir Amaan
 */
 
 /*
