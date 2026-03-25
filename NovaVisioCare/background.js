@@ -78,3 +78,9 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   // when it gets to the end of the listener.
   return true;
 });
+
+
+
+
+
+console.log("welcome to our project");
