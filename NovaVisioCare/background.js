@@ -80,4 +80,11 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 });
 
 
+<<<<<<< HEAD
 console.log("Sahir Amaan");
+=======
+
+
+
+console.log("welcome to our project");
+>>>>>>> a6848c2b649deadef93bd52959e422ffcd722d54
