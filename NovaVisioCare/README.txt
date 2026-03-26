@@ -1,6 +1,6 @@
 The purpose of this file is to document manifest.json
 
-Author: 
+Author: Mahmudul Hasan Hamim, Camille Williams, Sahir Amaan
 
 Line by line, here is the meaning:
 

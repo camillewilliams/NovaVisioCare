@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Nova VisioCare",
+  "name": "NovaVisioCare",
   "version": "1.0",
   "description": "Project for CSCI2356",
   "permissions": ["activeTab"],
