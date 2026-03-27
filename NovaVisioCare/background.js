@@ -1,5 +1,5 @@
 /*
-  The purpose of this file is to 
+  The purpose of this file is to provide background script for mapd server.
 
   Authors: Camille Williams, Mahmudul Hasan Hamim, Sahir Amaan
 */
@@ -78,4 +78,5 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   // when it gets to the end of the listener.
   return true;
 });
+
 

@@ -1,7 +1,7 @@
 /*
-  The purpose of this file is 
+  The purpose of this file is to provide the content script for mapd server
 
-    Author: 
+    Author: Camille Williams, Mahmudul Hasan Hamim, Sahir Amaan
 */
 
 /* global variables */
@@ -113,3 +113,5 @@ function speak(text) {
 
   speechSynthesis.speak(u);
 }
+
+
