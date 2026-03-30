@@ -1,21 +1,21 @@
 /*
-  The purpose of this file is to provide the content script for mapd server
+  The purpose of this file is to provide the content script for mapd server.
 
-    Author: Camille Williams, Mahmudul Hasan Hamim, Sahir Amaan
+    Authors: Camille Williams, Mahmudul Hasan Hamim, Sahir Amaan
 */
 
-/* global variables */
+/* --- Global Variables --- */
 let globalVoices = [];
 let pressTimer = null;
 
-/* global constants */
+/* --- Global Constants --- */
 const LONG_PRESS_MS = 600; // 0.6 sec gives a safe margin of the typical 0.5 sec
 const LANGUAGE_NAME = "Google UK English Female"; // client preferred soft female voice
 
-/*
-  The purpose of this function is to get the array of voices available
-  in this version of Google Chrome.
-*/
+/**
+ * The purpose of this function is to get the array of voices available
+ * in this version of Google Chrome.
+ */
 function loadVoices() {
   globalVoices = speechSynthesis.getVoices();
 }
@@ -24,16 +24,12 @@ function loadVoices() {
   onvoiceschanged is an event listener that activates only when the browser
   is ready to set the globalVoices variable immediately when the line of
   code is executed.
-
-  An important note here is that globalVoices = speechSynthesis.getVoices();
-  does not need to execute for the onvoiceschanged event to eventually fire.
-  onvoiceschanged happens asynchronously and independent of your code.
 */
 speechSynthesis.onvoiceschanged = loadVoices; // wait for event
 loadVoices(); // try right away just in case. But you might get an empty array []
 
 /*
-    This event listener acts when an image is "long pressed"
+    This event listener acts when an image is "long pressed".
 
     e - the event object created by the pointertdown event
       - contains field e.target which is the element that was directly pressed
@@ -53,19 +49,9 @@ document.addEventListener("pointerdown", (e) => {
     try {
       const resp = await chrome.runtime.sendMessage({
         type: "ANALYZE_IMAGE_URL",
-        // img.currentSrc might contain the actual image being displayed.
-        // If it doesn't then it is equal to "" which is falsy.
-        // This can be different than img.src which refers to the attribute src.
-        // img.src can be differnt when, for example, there are different sized
-        // images for different sized devices.
-        // url will be currentSrc when currentSrc !== "" , otherwise it will be src
         url: img.currentSrc || img.src,
       });
 
-      // if resp is null or undefined or false
-      // then if resp is not null or undefined
-      //      then use error description
-      //      else use "Unknown error"
       if (!resp?.ok) throw new Error(resp?.error || "Unknown error");
 
       speak(resp.description);
@@ -76,7 +62,7 @@ document.addEventListener("pointerdown", (e) => {
 });
 
 /*
-  These event listeners work to cancel the long press event
+  These event listeners work to cancel the long press event.
 */
 document.addEventListener("pointerup", () => {
   clearTimeout(pressTimer);
@@ -86,19 +72,20 @@ document.addEventListener("pointercancel", () => {
 });
 
 /*
-  Stop the context menu appearing due to a long-press.
-*/
+ * Event listener that stops the context menu appearing due to a long-press.
+ */
 document.addEventListener("contextmenu", (e) => {
   e.preventDefault();
 });
 
+/**
+ * This function produces speech of the given text.
+ * @param {string} text - The image description
+ */
 function speak(text) {
   speechSynthesis.cancel();
 
   const u = new SpeechSynthesisUtterance(text);
-  // u.lang used when you want a voice but you let the browser choose something close
-  // It's here only as information, and is not required for the app
-  u.lang = "en-GB";
   u.rate = 0.95;
   u.pitch = 1.0;
   u.volume = 1.0;

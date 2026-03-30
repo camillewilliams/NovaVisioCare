@@ -4,6 +4,12 @@
   Authors: Camille Williams, Mahmudul Hasan Hamim, Sahir Amaan
 */
 
+/* --- Global Constants --- */
+const SERVER_URL = "http://mapd.cs-smu.ca:3026/analyze";
+
+/* --- Global Variables --- */
+// None needed
+
 /*
   This function (1) fetches the image (2) represents the image as a blob
   (Binary Large Object) (3) sends the image to the server (4) receives a
@@ -15,7 +21,6 @@
     the content script. Once sendResponse has executed, the communication
     channel between the content and background scripts is closed.
 */
-
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg?.type !== "ANALYZE_IMAGE_URL") return;
 
@@ -41,7 +46,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       //           field , content, what the server calls it
       form.append("image", blobRep, "image.jpg");
       // call the endpoint /analyze on the server for processing
-      const serverRes = await fetch("http://mapd.cs-smu.ca:3026/analyze", {
+      const serverRes = await fetch(SERVER_URL, {
         method: "POST",
         body: form,
       });

@@ -10,12 +10,10 @@ import multer from "multer";
 import cors from "cors";
 // import Nodejs file system module
 import fs from "fs";
-//import Google Gemini
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 /* global constants */
 const PORT = 3026;
-// model name
 const MODEL_NAME = "gemini-1.5-flash";
 
 /* global variables */
@@ -25,10 +23,6 @@ const app = express();
 // and set a file size limit of 15MB
 const upload = multer({
   dest: "uploads/",
-  //                              1024 bytes
-  //                       1024 * 1KB
-  //                  15 * 1MB
-  //                  15MB
   limits: { fileSize: 15 * 1024 * 1024 },
 });
 
@@ -59,9 +53,6 @@ app.post("/analyze", upload.single("image"), async (reqObj, resObj) => {
     const buffer = fs.readFileSync(reqObj.file.path);
     // get the type and if it is missing set the type to image/jpeg
     const mime = reqObj.file.mimetype || "image/jpeg";
-    // convert image into a Base64-encoded data URL string
-    // that can be sent directly to Google Gemini
-    const dataUrl = `data:${mime};base64,${buffer.toString("base64")}`;
 
     // core Google Gemini API call goes here
     const model = genAI.getGenerativeModel({ model: MODEL_NAME });
