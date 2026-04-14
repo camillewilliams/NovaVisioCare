@@ -5,7 +5,7 @@
 */
 
 /* --- Global Constants --- */
-const SERVER_URL = "http://mapd.cs-smu.ca:3026/analyze";
+const SERVER_URL = "http://mapd.cs-smu.ca:3111/analyze";
 
 /* --- Global Variables --- */
 // None needed
@@ -28,7 +28,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     try {
       // 1) Fetch the image in the extension service worker context (background)
       //    rather than the context of the website the user is viewing (content).
-      //    This somtimes avoids cross origin resourse sharing (CORS)
+      //    This sometimes avoids cross origin resource sharing (CORS)
       //    limitations.
       const imgRes = await fetch(msg.url);
       // Back ticks are template literal strings. That's why ${...} is necessary

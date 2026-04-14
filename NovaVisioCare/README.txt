@@ -12,7 +12,7 @@ Line by line, here is the meaning:
   "permissions": ["activeTab"],             <-- Grants the extension temporary access to the currently active tab
   "host_permissions": [
     "<all_urls>",                           <-- Allows the extension to fetch images from any website
-    "http://mapd.cs-smu.ca:3026/*"          <-- Allows extension to send image data to mapd server
+    "http://mapd.cs-smu.ca:3111/*"          <-- Allows extension to send image data to mapd server
   ],
   "background": {
     "service_worker": "background.js"       <-- Chrome loads this JS as a service worker without a DOM

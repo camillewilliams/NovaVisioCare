@@ -10,10 +10,11 @@ import multer from "multer";
 import cors from "cors";
 // import Nodejs file system module
 import fs from "fs";
+import "dotenv/config";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 /* global constants */
-const PORT = 3026;
+const PORT = 3111;
 const MODEL_NAME = "gemini-1.5-flash";
 
 /* global variables */
@@ -96,7 +97,7 @@ app.post("/analyze", upload.single("image"), async (reqObj, resObj) => {
   The purpose of this function is to listen to PORT.
 */
 app.listen(PORT, () =>
-  console.log("✅ Server running at http://mapd.cs-smu.ca:3026"),
+  console.log("✅ Server running at http://mapd.cs-smu.ca:3111"),
 );
 
 
