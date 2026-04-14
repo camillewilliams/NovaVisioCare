@@ -5,6 +5,8 @@
   Authors: Camille Williams, Mahmudul Hasan Hamim, Sahir Amaan
 */
 
+
+import "dotenv/config";
 import express from "express";
 import multer from "multer";
 import cors from "cors";
@@ -99,5 +101,6 @@ app.post("/analyze", upload.single("image"), async (reqObj, resObj) => {
 app.listen(PORT, () =>
   console.log("✅ Server running at http://mapd.cs-smu.ca:3111"),
 );
+
 
 
