@@ -15,7 +15,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 /* global constants */
 const PORT = 3111;
-const MODEL_NAME = "gemini-1.5-flash";
+const MODEL_NAME = "gemini-3-flash-preview";
 
 /* global variables */
 const app = express();
@@ -30,7 +30,7 @@ const upload = multer({
 
 app.use(cors());
 
-const genAI = new GoogleGenerativeAI({ apiKey: process.env.GEMINI_API_KEY });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 /*
   The purpose of this endpoint is to supply Google Gemini with the
@@ -72,7 +72,7 @@ app.post("/analyze", upload.single("image"), async (reqObj, resObj) => {
 
     // Define a text prompt asking the model what to do with the image
     // In this case, we want a detailed description for accessibility purposes
-    const prompt = "Describe this image for a visually impaired person.";
+    const prompt = "Describe this image for a visually impaired person in 50 words or less.";
 
     // Send the prompt along with the image data to the model
     // The spread operator (...imageParts) adds the image content to the request
